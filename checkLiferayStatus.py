@@ -11,9 +11,9 @@ import httplib, subprocess, socket
 
 host = 'localhost'
 statuscode = 200
-blockcode =''
-retcode = subprocess.call("/sbin/iptables -L |grep webcache",shell=True)
-to = ['user1@example.com', 'user2@example.com']
+blockcode  =''
+retcode    = subprocess.call("/sbin/iptables -L |grep webcache",shell=True)
+to         = ['user1@example.com', 'user2@example.com']
 
 '''
 Routine to block port
@@ -60,7 +60,7 @@ def checkLRstatus():
         conn = httplib.HTTPConnection(host, 8080)
         conn.set_debuglevel(0)
         conn.request("GET","/web/guest")
-        r1 = conn.getresponse()
+        r1   = conn.getresponse()
         data = r1.read()
         host + ":" , r1.status, r1.reason,'\n' , r1.msg
         conn.close()
@@ -92,23 +92,23 @@ def sendalert(blockcode):
     from email.MIMEText import MIMEText
 
     server = 'smtp.example.com'
-    ip = socket.gethostbyname_ex(socket.gethostname())
+    ip     = socket.gethostbyname_ex(socket.gethostname())
     sender = 'liferay.monitor@ogilvy.com'
 
     if blockcode == 1:
-        msgtxt = 'To prevent login problems, Liferay is currently blocked on node ' + ip[2][0] + '\nTo unblock, run iptables -F'
+        msgtxt     = 'To prevent login problems, Liferay is currently blocked on node ' + ip[2][0] + '\nTo unblock, run iptables -F'
         msgsubject = 'Port 8080 has been Blocked on ' + ip[2][0]
     else:
-        msgtxt = 'Liferay has been unblocked on node ' + ip[2][0]
+        msgtxt     = 'Liferay has been unblocked on node ' + ip[2][0]
         msgsubject = 'Port 8080 has been UN-Blocked on ' + ip[2][0]
 
 #    print "msgtxt:", msgtxt
 #    print "msgsub:", msgsubject
 
-    msg = MIMEText(msgtxt)
+    msg            = MIMEText(msgtxt)
     msg['Subject'] = msgsubject
-    msg['From'] = sender
-    msg['To'] = ','.join(to)
+    msg['From']    = sender
+    msg['To']      = ','.join(to)
 
     s = smtplib.SMTP()
     s.connect(server,25)

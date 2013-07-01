@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 '''
-A script to help get me familar with pumping data into MySQL
+A script to help get me familiar with pumping data into MySQL
 '''
 
 import urllib2 , httplib , socket

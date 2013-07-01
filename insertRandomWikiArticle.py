@@ -12,7 +12,10 @@ URI  = '/wiki/Special:Random'
 VERB = 'GET'
 REPS =  1
 
-
+'''
+DB update example grabbed and changed a bit from:
+    http://www.tutorialspoint.com/python/python_database_access.htm
+'''
 def insertIntoDB(the_title,the_output):
     # Open database connection
     db = MySQLdb.connect("localhost","testuser","testuser1","test" )

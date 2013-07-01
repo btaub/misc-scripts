@@ -93,7 +93,7 @@ def sendalert(blockcode):
 
     server = 'smtp.example.com'
     ip     = socket.gethostbyname_ex(socket.gethostname())
-    sender = 'liferay.monitor@ogilvy.com'
+    sender = 'liferay.monitor@example.com'
 
     if blockcode == 1:
         msgtxt     = 'To prevent login problems, Liferay is currently blocked on node ' + ip[2][0] + '\nTo unblock, run iptables -F'

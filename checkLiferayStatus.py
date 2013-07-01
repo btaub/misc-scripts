@@ -1,5 +1,12 @@
 #! /usr/bin/env python
 
+'''
+When Liferay is starting up or encounters an error, the port stays up but returns a blank white page,
+so it remains available when being served up by a load-balancing appliance. Since the http response code 
+from the node changes from a 200, we can assume the portal is not functioning and access should be blocked
+to allow the lb to mark it as unresponsive.
+'''
+
 import httplib, subprocess, socket
 
 host = 'localhost'

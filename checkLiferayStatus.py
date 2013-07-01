@@ -26,7 +26,6 @@ def blockLR():
     else:
         blockcode = 1
         sendalert(blockcode)
-        #print "If this wasn't debug, I'd add a rule to iptables"
         return subprocess.call("/sbin/iptables -A INPUT -i eth1 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j REJECT",shell=True)
 
 '''
@@ -38,15 +37,12 @@ def unblockLR(retcode):
         print "Unblocked"
         blockcode = 0
         sendalert(blockcode)
-        #print "If this wasn't debug, I'd delete the block from iptables"
         return subprocess.call("/sbin/iptables -D INPUT -i eth1 -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j REJECT",shell=True)
 
 '''
 Check status of the iptables rule
 '''
 def checkBlock():
-    retcode
-#    print "checkBlock retcode:", retcode
     return retcode
 
 '''
@@ -64,8 +60,6 @@ def checkLRstatus():
         data = r1.read()
         host + ":" , r1.status, r1.reason,'\n' , r1.msg
         conn.close()
-
-        #print "Status code:", type(statuscode), "r1.status", type(r1.status), "r1.reason", r1.reason
 
         if r1.status <> statuscode:
             print "not", statuscode ,", it's " + r1.status
@@ -85,9 +79,6 @@ Send email - code paraphrased from: http://docs.python.org/2/library/email-examp
 
 def sendalert(blockcode):
 
-
-    #print "sendalert blockcode:", blockcode
-
     import smtplib, socket
     from email.MIMEText import MIMEText
 
@@ -101,9 +92,6 @@ def sendalert(blockcode):
     else:
         msgtxt     = 'Liferay has been unblocked on node ' + ip[2][0]
         msgsubject = 'Port 8080 has been UN-Blocked on ' + ip[2][0]
-
-#    print "msgtxt:", msgtxt
-#    print "msgsub:", msgsubject
 
     msg            = MIMEText(msgtxt)
     msg['Subject'] = msgsubject

@@ -17,7 +17,6 @@ hosts       = '192.168.1.0/24'
 threadCount = 10
 # End config #
 
-hostList = []
 nm = nmap.PortScanner()
 queue = Queue.Queue()
     

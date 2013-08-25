@@ -33,4 +33,4 @@ for line in readInFile:
     writeOutFile.write(sqlcmd + line.split('|')[1].strip() + ';\n')
 
 readInFile.close()
-readInFile.close()
+writeOutFile.close()

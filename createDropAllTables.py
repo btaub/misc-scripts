@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-
 '''
 ToDo: extend script to connect to MySQL and
       run show tables?
 '''
 
 dbname  = 'testDB'
-infile  = '/tmp/testDB_tables.txt'
+infile  = 'test.txt'
 
 ''' Sample input file - show tables;
 | adobe_payloads                                       |
@@ -15,7 +14,7 @@ infile  = '/tmp/testDB_tables.txt'
 ...etc
 '''
 
-outfile = '/tmp/' + dbname + '_DropTables.txt'
+outfile = '%s_DropTables.txt'%(dbname)
 
 ''' Sample output file
 DROP TABLE IF EXISTS adobe_payloads;
@@ -27,10 +26,12 @@ readInFile     =  open(infile, 'r')
 writeOutFile   =  open(outfile, 'w')
 sqlcmd         = 'DROP TABLE IF EXISTS '
 
-writeOutFile.write('use ' + dbname + ';\n')
+writeOutFile.write('use %s;\n'%(dbname))
 
 for line in readInFile:
-    writeOutFile.write(sqlcmd + line.split('|')[1].strip() + ';\n')
+    finalOutput = sqlcmd + line.split('|')[1].strip()
+    print finalOutput
+    writeOutFile.write(finalOutput + ';\n')
 
 readInFile.close()
 writeOutFile.close()

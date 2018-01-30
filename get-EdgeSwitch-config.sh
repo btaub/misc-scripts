@@ -4,9 +4,9 @@
   # Grab running-config from switch and save to an IP-timestamp file in /tmp. 
   # The user this runs as must have level 15 access to the switch.
 
-SERVERS="192.168.0.3 192.168.0.4 192.168.0.5"
+SWITCHES="192.168.0.3 192.168.0.4 192.168.0.5"
 
-for SW in $SERVERS;
+for SW in $SWITCHES;
  do
     echo "Connecting to $SW"
 # Login via https and get session cookie

@@ -10,9 +10,7 @@ for SW in $SWITCHES;
  do
     echo "Connecting to $SW"
 # Login via https and get session cookie
-curl -i -s -k  -X $'POST' -H $'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0' -H $'Referer: https://'$SW'/htdocs/login/login.lsp' -H $'Content-Type: application/x-www-form-urlencoded' -H $'X-Requested-With: XMLHttpRequest' --data-binary $'username=Level15user&password=Level15pass&accept_eula=0&require_eula=0' $'https://'$SW'/htdocs/login/login.lua'>/tmp/aaa
-
-COOKIE=$(grep Cook /tmp/aaa  |awk -F= {'print $2'})
+COOKIE=$(curl -i -s -k  -X $'POST' -H $'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0' -H $'Referer: https://'$SW'/htdocs/login/login.lsp' -H $'Content-Type: application/x-www-form-urlencoded' -H $'X-Requested-With: XMLHttpRequest' --data-binary $'username=Level15user&password=Level15pass&accept_eula=0&require_eula=0' $'https://'$SW'/htdocs/login/login.lua' | grep Cook |awk -F= {'print $2'} )
 
 # Generate file to download
 curl -i -s -k  -X $'POST' -H $'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0' -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?help=/htdocs/lang/en_us/help/base/help_file_transfer.lsp&filetypes=6&protocol=6' -H $'Content-Type: application/x-www-form-urlencoded' -H $'X-Requested-With: XMLHttpRequest' -b $'SIDSSL='$COOKIE --data-binary $'file_type_sel%5B%5D=config' $'https://'$SW'/htdocs/lua/ajax/file_upload_ajax.lua?protocol=6'>/dev/null

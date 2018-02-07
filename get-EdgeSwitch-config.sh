@@ -15,7 +15,7 @@ COOKIE=$(curl -i -s -k  -X $'POST' -H $"$UA" -H $'Referer: https://'$SW'/htdocs/
 
 # Generate file to download
 curl -i -s -k  -X $'POST' -H $"$UA" \
-     -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?help=/htdocs/lang/en_us/help/base/help_file_transfer.lsp&filetypes=6&protocol=6' \
+     -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?filetypes=6&protocol=6' \
      -H $'Content-Type: application/x-www-form-urlencoded' \
      -H $'X-Requested-With: XMLHttpRequest' \
      -b $'SIDSSL='$COOKIE --data-binary $'file_type_sel%5B%5D=config' \
@@ -24,7 +24,7 @@ curl -i -s -k  -X $'POST' -H $"$UA" \
 
 # Download config
 curl -i -s -k  -X $'GET' -H $"$UA" \
-     -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?help=/htdocs/lang/en_us/help/base/help_file_transfer.lsp&filetypes=6&protocol=6' \
+     -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?filetypes=6&protocol=6' \
      -H $'Upgrade-Insecure-Requests: 1' \
      -b $'SIDSSL'=$COOKIE \
         $'https://'$SW'/htdocs/pages/base/http_download_file.lua?filepath=/mnt/download/TempConfigScript.scr' > /tmp/$SW"_"$(date +%Y%m%d%H%M)

@@ -23,10 +23,10 @@ curl -i -s -k  -X $'POST' -H $"$UA" \
 
 
 # Download config
-curl -i -s -k  -X $'GET' -H $"$UA" \
+curl -s -k  -X $'GET' -H $"$UA" \
      -H $'Referer: https://'$SW'/htdocs/pages/base/file_upload_modal.lsp?filetypes=6&protocol=6' \
      -H $'Upgrade-Insecure-Requests: 1' \
      -b $'SIDSSL'=$COOKIE \
-        $'https://'$SW'/htdocs/pages/base/http_download_file.lua?filepath=/mnt/download/TempConfigScript.scr' > /tmp/$SW"_"$(date +%Y%m%d%H%M)
+        $'https://'$SW'/htdocs/pages/base/http_download_file.lua?filepath=/mnt/download/TempConfigScript.scr' -o /tmp/$SW"_"$(date +%Y%m%d%H%M)
 
 done

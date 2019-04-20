@@ -31,6 +31,6 @@ if [[ $updatepath ]]; then
    echo "Running update now...please wait"
 
 # Update the files using the arp-scan-provided utils
-    get-oui
-    get-iab
+    get-oui -u http://standards-oui.ieee.org/oui/oui.txt
+    get-iab -u http://standards-oui.ieee.org/iab/iab.txt
 fi

@@ -5,7 +5,7 @@
     Similar to the proxmark3 "hf iclass [encrypt | decrypt]" commands
 '''
 
-#from Crypto.Cipher import DES3      # python3 pip -m install pycyptodome
+#from Crypto.Cipher import DES3      # python3 pip -m install pycryptodome
 from Cryptodome.Cipher import DES3   # python3 pip -m install pycryptodomex
 import binascii
 import argparse

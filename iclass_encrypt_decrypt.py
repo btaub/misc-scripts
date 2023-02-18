@@ -2,7 +2,7 @@
 
 '''
     Encrypt or decrypt HID iClass block 7 data.
-    Same functionality as the proxmark3 "hf iclass [encrypt | decrypt]" commands
+    Similar to the proxmark3 "hf iclass [encrypt | decrypt]" commands
 '''
 
 #from Crypto.Cipher import DES3      # python3 pip -m install pycyptodome

@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-
 '''
     Encrypt or decrypt HID iClass block 7 data.
     Similar to the proxmark3 "hf iclass [encrypt | decrypt]" commands
 '''
-
 #from Crypto.Cipher import DES3      # python3 pip -m install pycryptodome
 from Cryptodome.Cipher import DES3   # python3 pip -m install pycryptodomex
 import binascii

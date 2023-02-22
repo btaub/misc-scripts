@@ -27,8 +27,9 @@ start_time = time.time()
 while 1:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(.1)
-#    p1 = os.urandom(40024)
-    #p1 = os.urandom(512) # Less is more
+    
+    # encoded 'deadbeef' * 5 works for more recent versions as well
+    #p1 = ("\x64\x65\x61\x64\x62\x65\x65\x66".encode() * (int(sys.argv[2])))
     p1 = os.urandom(int(sys.argv[2])) # 512 seems to work
 
     try:
@@ -54,9 +55,7 @@ while 1:
 
     try:
         resp = s.recv(40024)
-        #resp = s.recv(1024)
-        #print("R1: %s" % (resp))
-        #print("R1-hexed: %s" % binascii.hexlify(resp))
+
     except ConnectionResetError as e:
         if DEBUG:
             print("Err: %s" % e)

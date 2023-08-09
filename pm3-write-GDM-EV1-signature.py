@@ -29,8 +29,7 @@ DEBUG = False
 line_71  = '75CCB59C9BED70F0F8694B791BEA7BCC'
 
 pm3_path = '/usr/local/bin/'
-pm3_cmd  = './pm3 -c \"hf mf rdsc -s 17 -k 4B791BEA7BCC -b\"'
-pm3_cmd = shlex.split(pm3_cmd)
+pm3_cmd  = shlex.split('./pm3 -c \"hf mf rdsc -s 17 -k 4B791BEA7BCC -b\"')
 os.chdir(pm3_path)
 
 try:

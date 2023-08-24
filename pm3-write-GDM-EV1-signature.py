@@ -39,9 +39,6 @@ except subprocess.CalledProcessError:
     print(RED + "\nCheck for open proxmark sessions and try again\n")
     sys.exit(-1)
 
-if DEBUG:
-    print(res)
-
 res = res.decode()
 
 if 'Auth error' in res:
@@ -53,6 +50,8 @@ if 'Can\'t select' in res:
     sys.exit(-1)
 
 for line in res.split('\n'):
+    if DEBUG:
+        print(line)
     if '68 |' in line:
         block_68 = line.split('|')[1].replace(" ","")
     if '69 |' in line:

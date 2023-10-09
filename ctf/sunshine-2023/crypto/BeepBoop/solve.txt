@@ -1,0 +1,31 @@
+Clue:
+
+Help! My IOT device has gone sentient!
+All I wanted to know was the meaning of 42!
+
+It's also waving its arms up and down, and I...
+
+oh no! It's free!
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Automated Challenge Instructions
+Detected failure in challenge upload. Original author terminated. Please see attached file BeepBoop for your flag... human.
+
+----
+
+solve.py is a cleaner way.
+
+Original solution was :
+
+replace with sed:
+
+sed 's/beep/0/g' BeepBoop |sed 's/boop/1/g' > BeepBoop.test
+
+beep = 0
+boop = 1
+
+cyberchef to convert binary to ascii
+cyberchef to convert rot13
+
+https://gchq.github.io/CyberChef/#recipe=From_Binary('Space',8)ROT13(true,true,false,13)&input=MCAwIDAgMCAxIDAgMSAwIDAgMSAxIDAgMCAxIDEgMCAwIDEgMSAwIDEgMCAwIDAgMCAxIDEgMCAwIDAgMCAxIDAgMSAxIDEgMSAwIDEgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAxIDAgMSAxIDAgMSAxIDAgMCAxIDEgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAwIDEgMCAxIDAgMSAxIDEgMSAwIDEgMCAwIDEgMSAxIDAgMSAxIDAgMCAxIDEgMCAwIDAgMCAxIDAgMSAxIDAgMSAxIDEgMCAwIDEgMSAwIDAgMSAxIDEgMCAxIDEgMSAwIDAgMSAwIDAgMCAxIDAgMSAxIDAgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAxIDAgMSAxIDAgMSAxIDAgMCAxIDEgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAwIDEgMCAxIDAgMSAxIDEgMSAwIDEgMCAwIDEgMSAxIDAgMSAxIDAgMCAxIDEgMCAwIDAgMCAxIDAgMSAxIDAgMSAxIDEgMCAwIDEgMSAwIDAgMSAxIDEgMCAxIDEgMSAwIDAgMSAwIDAgMCAxIDAgMSAxIDAgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAxIDAgMSAxIDAgMSAxIDAgMCAxIDEgMSAwIDEgMSAxIDAgMCAxIDAgMCAxIDEgMCAwIDEgMCAxIDAgMSAxIDEgMSAwIDEgMCAwIDEgMSAxIDAgMSAxIDAgMCAxIDEgMCAwIDAgMCAxIDAgMSAxIDAgMSAxIDEgMCAwIDEgMSAwIDAgMSAxIDEgMCAxIDEgMSAwIDAgMSAwIDAgMSAxIDEgMSAxIDAgMQ

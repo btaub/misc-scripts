@@ -1,0 +1,9 @@
+┌──(kali㉿kali)-[~/Downloads/7z2hashcat]
+└─$ ./7z2hashcat.pl ../flag.7z                                                                                                                  130 ⨯
+ATTENTION: the hashes might contain sensitive encrypted data. Be careful when sharing or posting these hashes
+$7z$2$19$0$$8$24fe639159da35780000000000000000$1694652751$48$37$330eae54c32dc96f3940e56bd3f8397da9a6993d653ead46b5540f7755865144b666db1157ec6de37b439ebe9a46be89$33$00
+
+
+$ ./hashcat -m 11600 traitor.hash seeds_traitor.txt --show
+$7z$2$19$0$$8$24fe639159da35780000000000000000$1694652751$48$37$330eae54c32dc96f3940e56bd3f8397da9a6993d653ead46b5540f7755865144b666db1157ec6de37b439ebe9a46be89$33$00:brookite limitary casus
+

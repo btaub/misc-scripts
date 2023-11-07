@@ -23,9 +23,16 @@ def check_email(email):
     else:
         return(f"[x] {email} is an INVALID GMail address")
 
-if args.file:
-    with open(args.file,'r') as f:
-        for email in f:
-            print(check_email(email.strip()))
-else:
-    print(check_email(email))
+if __name__ == "__main__":
+
+    if args.file:
+        with open(args.file,'r') as f:
+            for email in f:
+                print(check_email(email.strip()))
+
+    else:
+        if email:
+            print(check_email(email))
+        else:
+            parser.print_help()
+

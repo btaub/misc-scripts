@@ -17,11 +17,7 @@ sources = {
 
 for k,v in sources.items():
     r = requests.get("%s%s" % (v , sys.argv[1]))
-    print("+="*40)
-    print()
-    print("  Checking %s..." % k)
-    print()
-    print("+="*40)
+    print("\n[+] Checking %s..." % k)
+    print("\n" + "+="*40 + "\n")
     print(json.dumps(r.json(),indent=4))
-    print()
-    print("+="*40)
+    print("\n" + "+="*40)

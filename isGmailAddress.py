@@ -36,3 +36,11 @@ if __name__ == "__main__":
         else:
             parser.print_help()
 
+''' Output:
+
+    % ./isGmailAddress.py -e fooasdfasdc@google.com
+    [x] fooasdfasdc@google.com is an INVALID GMail address
+
+    % ./isGmailAddress.py -e foo@google.com
+    [✔] foo@google.com is a REGISTERED GMail address
+'''

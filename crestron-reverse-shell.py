@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import socket
-import sys
 
 CRESTRON_IP   = '10.10.10.200' # Target IP
 CRESTRON_PORT = 41795          # CTP port (basically telnet)

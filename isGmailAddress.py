@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+'''
+Not working anymore, the glxu endpoint no longer differentiates between valid and invalid addresses
+'''
+
 import requests
 import argparse
 

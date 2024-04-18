@@ -39,7 +39,7 @@ except subprocess.CalledProcessError:
     print(RED + "\nCheck for open proxmark sessions and try again\n")
     sys.exit(-1)
 
-res = res.decode()
+res = res.decode(errors='ignore')
 
 if 'Auth error' in res:
     print(RED + '\nNot a MFC EV1 card\n')

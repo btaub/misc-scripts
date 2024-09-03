@@ -11,7 +11,7 @@ result = []
 otx_url = f'https://otx.alienvault.com/otxapi/indicators/domain/passive_dns/{sys.argv[1]}'
 
 r = requests.get(otx_url)
-r = json.loads(r.text)
+r = r.json()
 
 for k,v in r.items():
     if k == 'passive_dns':

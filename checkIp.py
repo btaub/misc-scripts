@@ -33,6 +33,8 @@ for k,v in sources.items():
 
     if TOR:
         print(f"\n[✔] {args.ip} is a Tor relay\n")
+        print(f"Check here for more detail:")
+        print(f"https://metrics.torproject.org/rs.html#search/{args.ip}")
         if args.verbose:
             print(resp)
         TOR = False

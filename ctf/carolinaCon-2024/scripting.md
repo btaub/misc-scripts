@@ -87,6 +87,17 @@ n = 0
 
 s = remote(host, port)
 
+d = {'zero':'0',
+     'one':'1',
+     'two':'2',
+     'three':'3',
+     'four':'4',
+     'five':'5',
+     'six':'6',
+     'seven':'7',
+     'eight':'8',
+     'nine':'9'}
+
 while 1:
     resp = s.recvline()
     #print(f"RESP: {resp}")
@@ -97,6 +108,7 @@ while 1:
     resp = resp.replace(b'what is', b'')
     resp = resp.strip()
 
+    '''
     # This part could be done better by 
     # someone that knows what they're doing...
     if b'zero' in resp:
@@ -119,6 +131,11 @@ while 1:
         resp = resp.replace(b'eight',b'8')
     if b'nine' in resp:
         resp = resp.replace(b'nine',b'9')
+    '''
+    # Cleaner than the mess above    
+    for k,v in d.items():
+        if k.encode() in resp:
+            resp = resp.replace(k.encode(),v.encode())
 
     # yes eval'ing blindly is awful practice but...
     # it's a ctf so whatever, it works

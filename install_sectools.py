@@ -59,7 +59,8 @@ for repo in REPOS:
 if not os.path.exists(f"{tools_dir}/httpx"):
     print("Setting up httpx")
     os.chdir(tools_dir)
-    arch = f"{os.uname()[-1]}"
+    #arch = f"{os.uname()[-1]}"
+    arch = os.uname().machine
 
     if "aarch" in arch.lower():
         print(f"ARM detected")

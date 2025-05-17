@@ -13,7 +13,7 @@ REPOS=["https://github.com/Wh04m1001/DFSCoerce.git",
 
 # Installl dependencies
 print("Installing deb packages")
-res = subprocess.getoutput('sudo apt install vim curl unzip git make gcc -y')
+res = subprocess.getoutput('sudo apt install vim curl unzip git make gcc python3-pip python3-impacket -y')
 print(res)
 
 # vimrc updates

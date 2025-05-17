@@ -54,6 +54,7 @@ for repo in REPOS:
 
             for ln in res.split("\n"):
                 print(f"masscan_log: {ln}")
+            os.chdir(tools_dir)
 
 # Install httpx
 if not os.path.exists(f"{tools_dir}/httpx"):

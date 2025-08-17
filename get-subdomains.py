@@ -11,7 +11,6 @@ C99_KEY    = '__FILL_ME_IN__'
 c99_url    = f'https://api.c99.nl/subdomainfinder?key={C99_KEY}&domain={DOMAIN}'
 otx_url    = f'https://otx.alienvault.com/otxapi/indicators/domain/passive_dns/{DOMAIN}'
 shodan_url = f'https://api.shodan.io/dns/domain/{DOMAIN}?key={SHODAN_KEY}'
-subdomainCenter_url = f'https://api.subdomain.center/?domain={DOMAIN}'
 
 def shodan(DOMAIN):
     SUBDOMAINS = []

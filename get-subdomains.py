@@ -76,12 +76,8 @@ if __name__ == "__main__":
     all_records = otx_records + shodan_records + c99_records
     all_records = sorted(set(all_records))
     all_file    = f'{DOMAIN}_all.txt'
-    all_records_uniq = []
-
-    for record in all_records:
-        all_records_uniq.append(record)
 
     with open(all_file,'w') as f:
-        for record in all_records_uniq:
+        for record in all_records:
             if record:
                 f.write(f'{record}\n')

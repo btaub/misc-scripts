@@ -15,8 +15,7 @@ r = requests.get(url, allow_redirects=True)
 print(r.url)
 """
 
-# This gets the real url w/o contacting
-# with the final endpoint
+# This gets the real url w/o contacting the final endpoint
 while True:
     try:
         r = requests.get(url, allow_redirects=False)

@@ -18,9 +18,10 @@ print(r.url)
 # This gets the real url w/o contacting the final endpoint
 while True:
     try:
+        if not "share.google" in url:
+            print(url)
+            break
         r = requests.get(url, allow_redirects=False)
-        if not "share.google" in r.headers['Location']:
-            print(f"Unmasked url: {r.headers['Location']}")
         if r.headers['Location']:
             url = r.headers['Location']
 

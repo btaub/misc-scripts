@@ -5,26 +5,48 @@ import sys
 
 url = sys.argv[1]
 
-"""
-# This gets the real url by following the Location header
-# until requests gets a 200 OK.
-# The downside to this approach is you make contact
-# with that final system.
+# Only share.google and lnkd.in handled at the moment. More to come, probably
 
-r = requests.get(url, allow_redirects=True)
-print(r.url)
-"""
+# Handle share.google shortlinks
+def share_google(url):
+    """
+    # This gets the real url by following the Location header
+    # until requests gets a 200 OK.
+    # The downside to this approach is you make contact
+    # with that final system.
 
-# This gets the real url w/o contacting the final endpoint
-while True:
-    try:
-        if not "share.google" in url:
-            print(url)
-            break
-        r = requests.get(url, allow_redirects=False)
-        if r.headers['Location']:
-            url = r.headers['Location']
+    r = requests.get(url, allow_redirects=True)
+    print(r.url)
+    """
 
-    except:
-        break
+    # This gets the real url w/o contacting
+    # the final endpoint
+    while True:
+        try:
+            if not "share.google" in url:
+                print(url)
+                break
+            r = requests.get(url, allow_redirects=False)
 
+            if r.headers['Location']:
+                url = r.headers['Location']
+
+        except:
+           break
+
+# Handle LinkedIn shortlinks
+def linked_in(url):
+    r = requests.get(url)
+    #print(r.text)
+    for ln in r.text.split('\n'):
+        #print(ln)
+        if 'artdeco-button' in ln:
+            if 'extern' in ln:
+                print(ln.split('"')[5])
+
+
+if __name__ == "__main__":
+    if 'share.google' in url:
+        share_google(url)
+    if 'lnkd.in' in url:
+        linked_in(url)

@@ -37,12 +37,12 @@ def share_google(url):
 # Handle LinkedIn shortlinks
 def linked_in(url):
     r = requests.get(url)
-    #print(r.text)
     for ln in r.text.split('\n'):
-        #print(ln)
         if 'artdeco-button' in ln:
             if 'extern' in ln:
-                print(ln.split('"')[5])
+                for ln in ln.split('"'):
+                    if ln.startswith('http'):
+                        print(ln)
 
 
 if __name__ == "__main__":

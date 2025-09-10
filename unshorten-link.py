@@ -38,11 +38,10 @@ def share_google(url):
 def linked_in(url):
     r = requests.get(url)
     for ln in r.text.split('\n'):
-        if 'artdeco-button' in ln:
-            if 'extern' in ln:
-                for ln in ln.split('"'):
-                    if ln.startswith('http'):
-                        print(ln)
+        if 'extern' in ln:
+            for ln in ln.split('"'):
+                if ln.startswith('http'):
+                    print(ln)
 
 
 if __name__ == "__main__":

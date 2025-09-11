@@ -5,9 +5,14 @@ import sys
 
 url = sys.argv[1]
 
-# Only share.google and lnkd.in handled at the moment. More to come, probably
+"""
+Supported:
+    share.google
+    lnkd.in
+    bit.ly
+"""
 
-# Handle share.google shortlinks
+# share.google
 def share_google(url):
     """
     # This gets the real url by following the Location header
@@ -19,8 +24,7 @@ def share_google(url):
     print(r.url)
     """
 
-    # This gets the real url w/o contacting
-    # the final endpoint
+    # This gets the real url w/o contacting the final endpoint
     while True:
         try:
             if not "share.google" in url:
@@ -34,14 +38,19 @@ def share_google(url):
         except:
            break
 
-# Handle LinkedIn shortlinks
+# LinkedIn
 def linked_in(url):
     r = requests.get(url)
     for ln in r.text.split('\n'):
+        #if 'artdeco-button' in ln:
         if 'extern' in ln:
             for ln in ln.split('"'):
                 if ln.startswith('http'):
                     print(ln)
+# bit.ly
+def bit_ly(url):
+    r = requests.head(url)
+    print(r.headers['location'])
 
 
 if __name__ == "__main__":
@@ -49,3 +58,5 @@ if __name__ == "__main__":
         share_google(url)
     if 'lnkd.in' in url:
         linked_in(url)
+    if 'bit.ly' in url:
+        bit_ly(url)

@@ -47,6 +47,7 @@ def linked_in(url):
             for ln in ln.split('"'):
                 if ln.startswith('http'):
                     print(ln)
+
 # bit.ly
 def bit_ly(url):
     r = requests.head(url)

@@ -48,8 +48,8 @@ def linked_in(url):
                 if ln.startswith('http'):
                     print(ln)
 
-# bit.ly
-def bit_ly(url):
+# Generic location header-based HEAD request
+def head_req(url):
     r = requests.head(url)
     print(r.headers['location'])
 
@@ -59,5 +59,5 @@ if __name__ == "__main__":
         share_google(url)
     if 'lnkd.in' in url:
         linked_in(url)
-    if 'bit.ly' in url:
-        bit_ly(url)
+    if 'bit.ly' in url or 'tinyurl.com' in url:
+        head_req(url)

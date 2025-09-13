@@ -14,7 +14,6 @@ shodan_url = f'https://api.shodan.io/dns/domain/{DOMAIN}?key={SHODAN_KEY}'
 
 def shodan(DOMAIN):
     SUBDOMAINS = []
-    l = []
 
     res = requests.get(shodan_url)
 
@@ -24,14 +23,13 @@ def shodan(DOMAIN):
                 for k,v in itm.items():
                     if k == 'subdomain':
                         SUBDOMAINS.append(v)
-    SUBDOMAINS = set(sorted(SUBDOMAINS))
+    SUBDOMAINS = sorted(set(SUBDOMAINS))
 
     with open(f'{DOMAIN}_shodan.txt','a') as f:
         for host in SUBDOMAINS:
             f.write(f'{host}.{DOMAIN}\n')
-            l.append(f'{host}.{DOMAIN}')
 
-    return(l)
+    return(SUBDOMAINS)
 
 def c99(DOMAIN):
     res = requests.get(c99_url)

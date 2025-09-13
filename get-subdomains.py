@@ -22,7 +22,7 @@ def shodan(DOMAIN):
             for itm in v:
                 for k,v in itm.items():
                     if k == 'subdomain':
-                        SUBDOMAINS.append({v}.{DOMAIN})
+                        SUBDOMAINS.append(f"{v}.{DOMAIN}")
     SUBDOMAINS = sorted(set(SUBDOMAINS))
 
     with open(f'{DOMAIN}_shodan.txt','a') as f:

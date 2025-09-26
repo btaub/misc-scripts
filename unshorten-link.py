@@ -14,29 +14,20 @@ Supported:
 
 # share.google
 def share_google(url):
-    """
-    # This gets the real url by following the Location header
-    # until requests gets a 200 OK.
-    # The downside to this approach is you make contact
-    # with that final system.
 
-    r = requests.get(url, allow_redirects=True)
-    print(r.url)
-    """
-
-    # This gets the real url w/o contacting the final endpoint
     while True:
         try:
-            if not "share.google" in url:
-                return(url)
-                break
             r = requests.get(url, allow_redirects=False)
-
-            if r.headers['Location']:
-                url = r.headers['Location']
+            if "share.google" in url:
+                 url = r.headers['Location']
+            else:
+                 return(url)
+                 break
 
         except:
+           return("something went wrong")
            break
+
 
 # LinkedIn
 def linked_in(url):
@@ -58,6 +49,9 @@ def head_req(url):
     return(res)
 
 if __name__ == "__main__":
+    # Specify scheme if missing
+    if not url.startswith("https://"):
+        url = f"https://{url}"
     if 'share.google' in url:
         res = share_google(url)
     if 'lnkd.in' in url:
@@ -66,5 +60,5 @@ if __name__ == "__main__":
             res = linked_in(url)
     if 'bit.ly' in url or 'tinyurl.com' in url:
         res = head_req(url)
-        
+
     print(res)

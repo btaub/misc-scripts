@@ -10,11 +10,12 @@ Supported:
     share.google
     lnkd.in
     bit.ly
+    tinyurl.com
+    ... and other services that rely on Location-header redirs
 """
 
 # share.google
 def share_google(url):
-
     while True:
         try:
             r = requests.get(url, allow_redirects=False)
@@ -52,13 +53,18 @@ if __name__ == "__main__":
     # Specify scheme if missing
     if not url.startswith("https://"):
         url = f"https://{url}"
+    # Fix copy-paste errors
+    if url.endswith("/"):
+        url = url.rstrip("/")
     if 'share.google' in url:
         res = share_google(url)
+    # LinkedIn rarely redirects using a Location header, but mostly uses embedded links
     if 'lnkd.in' in url:
         res = head_req(url)
         if not res:
             res = linked_in(url)
-    if 'bit.ly' in url or 'tinyurl.com' in url:
+    # And the rest of them
+    else:
         res = head_req(url)
 
     print(res)

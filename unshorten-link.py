@@ -4,6 +4,7 @@ import requests
 import sys
 
 url = sys.argv[1]
+checked = False
 
 """
 Supported:
@@ -58,13 +59,15 @@ if __name__ == "__main__":
         url = url.rstrip("/")
     if 'share.google' in url:
         res = share_google(url)
+        checked = True
     # LinkedIn rarely redirects using a Location header, but mostly uses embedded links
     if 'lnkd.in' in url:
         res = head_req(url)
         if not res:
             res = linked_in(url)
+        checked = True
     # And the rest of them
-    else:
+    if not checked:
         res = head_req(url)
 
     print(res)

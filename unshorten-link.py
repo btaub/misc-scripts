@@ -51,8 +51,9 @@ def head_req(url):
     return(res)
 
 if __name__ == "__main__":
-    # Specify scheme if missing
+    # Specify https if missing or if http-only
     if not url.startswith("https://"):
+        url = url.replace("http://","")
         url = f"https://{url}"
     # Fix copy-paste errors
     if url.endswith("/"):

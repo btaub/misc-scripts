@@ -2,6 +2,7 @@
 
 import ssl
 import sys
+import re
 import argparse
 from cryptography import x509
 

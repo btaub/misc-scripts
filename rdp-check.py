@@ -26,10 +26,6 @@ except Exception as e:
     sys.exit(-1)
 
 cert = x509.load_pem_x509_certificate(get_cert.encode('latin-1'))
-# output and type of cert.subject looks like this:
-# <Name(CN=DESKTOP-01AB23C)>
-# <class 'cryptography.x509.name.Name'>
 
-cert_subject = f"{cert.subject}"
-cert_subject = re.search(r"CN.+?(?=\))",cert_subject)
-print(f"{HOSTNAME},{cert_subject[0]}")
+cert_subject = cert.subject.rfc4514_string()
+print(f"{HOSTNAME},{cert_subject}")

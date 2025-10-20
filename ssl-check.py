@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import ssl
-import sys
 import argparse
 from cryptography import x509
 

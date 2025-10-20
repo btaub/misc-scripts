@@ -8,11 +8,12 @@ from cryptography import x509
 parser = argparse.ArgumentParser(description="Quick and dirty way to check for an RDP listener",
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("ip")
+parser.add_argument("port")
 parser.add_argument("-v","--verbose",action="store_true",help="Verbose output",default=False)
 args = parser.parse_args()
 
 HOSTNAME = args.ip
-PORT     = 3389
+PORT     = args.port
 context  = ssl.create_default_context()
 context.check_hostname = False
 context.verify_mode = ssl.CERT_NONE

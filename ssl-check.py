@@ -5,7 +5,7 @@ import sys
 import argparse
 from cryptography import x509
 
-parser = argparse.ArgumentParser(description="Quick and dirty way to check for an RDP listener",
+parser = argparse.ArgumentParser(description="Quick and dirty way to check for an SSL listener",
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("ip")
 parser.add_argument("port")

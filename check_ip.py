@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
+'''
+  Report findings from IP reputation/info sites
+'''
 
-import requests
 import json
 import argparse
+import requests
 
-parser = argparse.ArgumentParser(description="Report IP findings from OTX, Tor, Shodan and IPinfo",formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(description="Report IP findings from OTX, Tor, Shodan and IPinfo",
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("ip")
 parser.add_argument("-v","--verbose",action="store_true",help="Verbose output",default=False)
 args = parser.parse_args()
 
 ABUSEIP_HEADERS = {'Key':'__ ENTER ABUSEIPDB KEY HERE __'}
-TOR = False
+is_tor = False
 
 sources = {
            "otx":"https://otx.alienvault.com/otxapi/indicators/ip/general/",
            "tor":"https://onionoo.torproject.org/details?search=",
            "shodan":"https://internetdb.shodan.io/",
            "ipinfo":"https://ipinfo.io/",
-           "abuseipdb":f"https://api.abuseipdb.com/api/v2/check?maxAgeInDays=90&ipAddress="
+           "abuseipdb":"https://api.abuseipdb.com/api/v2/check?maxAgeInDays=90&ipAddress="
           }
 
 for k,v in sources.items():
@@ -36,19 +40,19 @@ for k,v in sources.items():
 
     if k == "tor":
         if "nickname" in r.text:
-            TOR = True
+            is_tor = True
         else:
             resp = "[x] Not a Tor relay"
 
-    print(f"\n" + "+="*40 + "\n")
+    print("\n" + "+="*40 + "\n")
 
-    if TOR:
+    if is_tor:
         print(f"\n[✔] {args.ip} is a Tor relay\n")
-        print(f"Check here for more detail:")
+        print("Check here for more detail:")
         print(f"https://metrics.torproject.org/rs.html#search/{args.ip}")
         if args.verbose:
             print(resp)
-        TOR = False
+        is_tor = False
     else:
         print(resp)
 

@@ -9,17 +9,29 @@ parser.add_argument("ip")
 parser.add_argument("-v","--verbose",action="store_true",help="Verbose output",default=False)
 args = parser.parse_args()
 
+ABUSEIP_HEADERS = {'Key':'__ ENTER ABUSEIPDB KEY HERE __'}
 TOR = False
 
 sources = {
            "otx":"https://otx.alienvault.com/otxapi/indicators/ip/general/",
            "tor":"https://onionoo.torproject.org/details?search=",
            "shodan":"https://internetdb.shodan.io/",
-           "ipinfo":"https://ipinfo.io/"
+           "ipinfo":"https://ipinfo.io/",
+           "abuseipdb":f"https://api.abuseipdb.com/api/v2/check?maxAgeInDays=90&ipAddress="
           }
 
 for k,v in sources.items():
-    r = requests.get(f"{v}{args.ip}")
+    print(f"\n[+] Checking {k}...")
+
+    if k == 'abuseipdb':
+        r = requests.get(f"{v}{args.ip}",headers=ABUSEIP_HEADERS)
+        for k_abuse_ipdb,v_abuse_ipdb in r.json().items():
+            if v_abuse_ipdb['totalReports'] > 0:
+                print('\nAbuseIPDB reports found: '
+                     f'https://www.abuseipdb.com/check/{args.ip}')
+
+    else:
+        r = requests.get(f"{v}{args.ip}")
     resp = json.dumps(r.json(),indent=4)
 
     if k == "tor":
@@ -28,7 +40,6 @@ for k,v in sources.items():
         else:
             resp = "[x] Not a Tor relay"
 
-    print(f"\n[+] Checking {k}...")
     print(f"\n" + "+="*40 + "\n")
 
     if TOR:

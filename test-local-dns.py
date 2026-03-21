@@ -60,7 +60,7 @@ Testing against: newyorker.com
 resolved IPs: ['166.117.251.134', '52.223.6.210']
 [ x ] 10.10.10.22    status: down
 error: ;; connection timed out; no servers could be reached
-[ + ] 10.10.10.2222   status: up
+[ + ] 10.10.10.222   status: up
 resolved IPs: ['166.117.251.134', '52.223.6.210']
 
 $ ./test-local-dns.py

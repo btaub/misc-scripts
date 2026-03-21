@@ -6,7 +6,6 @@
 import subprocess
 import random
 import argparse
-import string
 import re
 
 parser = argparse.ArgumentParser(description="Check if local resolvers are responding to queries",
@@ -14,19 +13,23 @@ parser = argparse.ArgumentParser(description="Check if local resolvers are respo
 parser.add_argument("-v","--verbose",action="store_true",help="Verbose output",default=False)
 args = parser.parse_args()
 
+sites = [
+         'space.com',
+         'un.org',
+         'who.int',
+         'example.com',
+         'ntp.org',
+         'newyorker.com',
+         'freebsd.org'
+        ]
 
-sites_list = []
-sites = 'top-sites.txt' # List of FQDNs that should always be resolvable
-
-servers = ['10.10.10.2',
+servers = [
+           '10.10.10.2',
            '10.10.10.22',
-           '10.10.10.222']
+           '10.10.10.222'
+          ]
 
-with open(sites,'r') as f:
-    for ln in f:
-        sites_list.append(ln.strip('\n'))
-
-site = random.choice(sites_list)
+site = random.choice(sites)
 print(f'Testing against: {site}')
 
 # If no numbers are present, the op failed
@@ -36,6 +39,7 @@ def is_up(res):
 
     return False
 
+# Assume dig is installed and in the path.
 for ns in servers:
     res = subprocess.getoutput(f'dig +timeout=1 +short @{ns} {site}')
     ns_status = is_up(res)
@@ -49,7 +53,6 @@ for ns in servers:
         print(f'[ x ] {ns.ljust(15)} status: down ')
         if args.verbose:
             print(f'error: {res}')
-
 
 '''
   Expected output:

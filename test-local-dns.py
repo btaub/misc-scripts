@@ -17,6 +17,7 @@ args = parser.parse_args()
 
 sites_list = []
 sites = 'top-sites.txt' # List of FQDNs that should always be resolvable
+
 servers = ['10.10.10.2',
            '10.10.10.22',
            '10.10.10.222']
@@ -28,11 +29,10 @@ with open(sites,'r') as f:
 site = random.choice(sites_list)
 print(f'Testing against: {site}')
 
-# Check response for presense of numbers. If no numbers are present, the op failed
+# If no numbers are present, the op failed
 def is_up(res):
-    for x in string.digits:
-        if re.search(x, res):
-            return True
+    if re.search('[0-9]',res):
+        return True
 
     return False
 

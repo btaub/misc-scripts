@@ -6,7 +6,7 @@
 import subprocess
 import random
 import argparse
-import re
+import shlex
 
 parser = argparse.ArgumentParser(description="Check if local resolvers are responding to queries",
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -32,27 +32,21 @@ servers = [
 site = random.choice(sites)
 print(f'Testing against: {site}')
 
-# If no numbers are present, the op failed
-def is_up(res):
-    if re.search('[0-9]',res):
-        return True
-
-    return False
-
 # Assume dig is installed and in the path.
 for ns in servers:
-    res = subprocess.getoutput(f'dig +timeout=1 +short @{ns} {site}')
-    ns_status = is_up(res)
-
-    if ns_status:
+    try:
+        res = subprocess.check_output(shlex.split(f'dig +timeout=1 +short @{ns} {site}'))
         print(f'[ + ] {ns.ljust(15)} status: up ')
         if args.verbose:
+            res = res.decode('latin-1')
+            res = res.strip('\n')
             res = res.split('\n')
             print(f'resolved IPs: {res}')
-    else:
+
+    except subprocess.CalledProcessError as e:
         print(f'[ x ] {ns.ljust(15)} status: down ')
         if args.verbose:
-            print(f'error: {res}')
+            print(f'error: {e}')
 
 '''
   Expected output:
@@ -62,7 +56,7 @@ Testing against: newyorker.com
 [ + ] 10.10.10.2     status: up
 resolved IPs: ['166.117.251.134', '52.223.6.210']
 [ x ] 10.10.10.22    status: down
-error: ;; connection timed out; no servers could be reached
+error: Command '['dig', '+timeout=1', '+short', '@10.10.10.22', 'ntp.org']' returned non-zero exit status 9.
 [ + ] 10.10.10.222   status: up
 resolved IPs: ['166.117.251.134', '52.223.6.210']
 

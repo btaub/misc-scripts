@@ -3,7 +3,6 @@
 import sys
 import os
 import requests
-import json
 
 DOMAIN     = f'{sys.argv[1]}'
 SHODAN_KEY = '__FILL_ME_IN__'
@@ -29,15 +28,22 @@ def shodan(DOMAIN):
         for host in SUBDOMAINS:
             f.write(f'{host}\n')
 
-    return(SUBDOMAINS)
+    return SUBDOMAINS
 
 def c99(DOMAIN):
-    res = requests.get(c99_url)
-    res = res.text.split('<br>')
+    SUBDOMAINS = []
+
+    res = requests.get(c99_url).json()
+    for k,v in res.items():
+        if k == 'subdomains':
+            for sub in v:
+                SUBDOMAINS.append(f"{sub['subdomain']}")
+
     with open(f'{DOMAIN}_c99.txt','a') as f:
-        for host in res:
-            f.write(f'{host}\n')
-    return(res)
+        for sub in SUBDOMAINS:
+            f.write(f"{sub}\n")
+
+    return(SUBDOMAINS)
 
 def otx(DOMAIN):
     SUBDOMAINS = []
@@ -63,7 +69,7 @@ def otx(DOMAIN):
         for host in SUBDOMAINS:
             f.write(f'{host}\n')
 
-    return(SUBDOMAINS)
+    return SUBDOMAINS
 
 if __name__ == "__main__":
     otx_records    = otx(DOMAIN)
